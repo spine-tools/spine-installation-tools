@@ -142,6 +142,7 @@ python3 -m pip install --upgrade pip
 python3 -m pip install -r requirements.txt
 cd ..
 ```
+On Windows you have to replace 'python3' by 'python'.
 
 ### Julia virtual environment
 
@@ -199,6 +200,7 @@ ENV["PYTHON"] = path_python
 Pkg.build("PyCall")
 '
 ```
+For Windows, you need to replace 'bin' by 'Scripts' and 'python3' by 'python'.
 
 To check whether PyCall uses the correct python executable, you can enter these commands (again activating the environment first).
 ```bash
