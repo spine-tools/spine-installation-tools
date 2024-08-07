@@ -28,7 +28,7 @@ For Windows you have to type 'python' instead of 'python3'.
 
 So, let's attempt to install spine tools with the scripts.
 
-1. Create a folder where you want to install the tools (I typically choose the name 'spinetools' for that folder) and place the scripts in that folder.
+1. Create a folder where you want to install the tools and place the scripts in that folder. As the script is a bash script it is best not to use spaces in the folder name (I typically choose the name 'spinetools' for that folder).
     ![image](figs/folder_spinetools.png)
 2. Run the install script. On Linux open the terminal in the folder and type the name of the file (or use a built-in way of your distribution to run as program). If you are prompted that you do not have the right permissions, grant the permissions with the 'chmod' command (i.e. `chmod +x install_spinetools.sh`). On Windows, right click the install script and open with 'Git for Windows' (alternatively open git bash (comes installed with git) or open a bash terminal in the windows Terminal app, make sure that whatever (bash) terminal shows that you are in the same folder and type the name of the install script). (This is because we're too lazy to create a separate bat file for windows. If there is enough request and/or issues, we may consider creating a bat file anyway.)
     ![image](figs/Git4Windows_part1.png)
