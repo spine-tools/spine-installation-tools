@@ -77,12 +77,13 @@ Pkg.develop(path=path_spineopt)
 '
 cd ..
 
-# Configure PyCall
+# install and configure PyCall
 julia -e '
 env_julia = joinpath(@__DIR__,"environments","jenv")
 path_python = joinpath(@__DIR__,"environments","penv","bin","python3")
 import Pkg
 Pkg.activate(env_julia)
+Pkg.add("PyCall")
 import PyCall
 ENV["PYTHON"] = path_python
 Pkg.build("PyCall")
