@@ -81,7 +81,9 @@ If there are no issues along the way and the output of the tool makes sense, you
 
 Create a folder to install spine tools. Some system administered systems may not like you installing programs outside of your user folder so you can choose a folder there, e.g. 'spinetools'.
 
-Open the terminal (cmd, powershell, bash, etc.) inside that folder. Check that the terminal shows that it is open in that folder.
+Open the terminal inside that folder and check whether the terminal shows that it is open in that folder.
+
+(Note that for linux we are assuming that you are using a bash terminal whereas for windows we are assuming that you are using cmd or powershell. It is possible to use a bash terminal on windows using git bash, but the code below will need to be adjusted accordingly. For example, to run and locate the script for activating the python environment you run `source penv/Scripts/activate` which uses the bash language for running the script and the windows folder structure of the python environment to locate the script.)
 
 Download the files from git:
 ```git
