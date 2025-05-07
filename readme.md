@@ -206,7 +206,7 @@ println(PyCall.pyprogramname)
 ```
 For Windows, you need to replace 'bin' by 'Scripts' and 'python3' by 'python'.
 
-If you encounter issues with this step, you may want to try again inside of a julia REPL; that typically works better.
+(If you encounter issues with this step, you may want to try again inside of a julia REPL; that typically works better.)
 
 To check whether PyCall uses the correct python executable, you can enter these commands (again activating the environment first).
 ```bash
