@@ -1,5 +1,6 @@
 #!/bin/bash
 #chmod +x ~/spinetools/switch_spinetools.sh
+#to run this file on Windows with 'Git for Windows', replace python3 by python and bin by Scripts
 
 # user settings: install directory, environment names
 path_spinetools=$(dirname $0)

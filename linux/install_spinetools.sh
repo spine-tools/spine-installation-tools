@@ -1,5 +1,7 @@
 #!/bin/bash
 #chmod +x ~/spinetools/install_spinetools.sh
+#to run this file on Windows with 'Git for Windows', replace python3 by python and bin by Scripts
+
 # check whether python, git and julia are installed; python3 may be needed to changed to python depending on your system
 python3 --version
 git --version
