@@ -81,7 +81,9 @@ If there are no issues along the way and the output of the tool makes sense, you
 
 Create a folder to install spine tools. Some system administered systems may not like you installing programs outside of your user folder so you can choose a folder there, e.g. 'spinetools'.
 
-Open the terminal (cmd, powershell, bash, etc.) inside that folder. Check that the terminal shows that it is open in that folder.
+Open the terminal inside that folder and check whether the terminal shows that it is open in that folder.
+
+(Note that for linux we are assuming that you are using a bash terminal whereas for windows we are assuming that you are using cmd or powershell. It is possible to use a bash terminal on windows using git bash, but the code below will need to be adjusted accordingly. For example, to run and locate the script for activating the python environment you run `source penv/Scripts/activate` which uses the bash language for running the script and the windows folder structure of the python environment to locate the script.)
 
 Download the files from git:
 ```git
@@ -188,19 +190,23 @@ cd ..
 
 SpineOpt and SpineInterface are now installed from source. The next step is to ensure that PyCall is configured correctly. You can also use these commands to configure PyCall for your different projects.
 
-The first step is again to activate the julia environment. Then we import PyCall, point it to the correct Python environment and then build PyCall.
+The first step is again to activate the julia environment. Although PyCall is a dependency of SpineInterface, explicitly installing PyCall works better for configuring Pycall. Then we import PyCall, point it to the correct Python environment and build PyCall.
 ```bash
 julia -e '
 env_julia = joinpath(@__DIR__,"environments","jenv")
 path_python = joinpath(@__DIR__,"environments","penv","bin","python3")
 import Pkg
 Pkg.activate(env_julia)
+Pkg.add("PyCall")
 import PyCall
 ENV["PYTHON"] = path_python
 Pkg.build("PyCall")
+println(PyCall.pyprogramname)
 '
 ```
 For Windows, you need to replace 'bin' by 'Scripts' and 'python3' by 'python'.
+
+(If you encounter issues with this step, you may want to try again inside of a julia REPL; that typically works better.)
 
 To check whether PyCall uses the correct python executable, you can enter these commands (again activating the environment first).
 ```bash
