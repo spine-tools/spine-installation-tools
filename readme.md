@@ -152,6 +152,38 @@ For SpineInterface and SpineOpt we have to do something similar.  Except we'll u
 
 For Julia the command to create a virtual environment is the same as activating that environment. So we actually do not need to explicitly do this separately.
 
+### Configure PyCall
+
+Before we install SpineInterface and SpineOpt, we ensure that PyCall is configured correctly. You can also use these commands to configure PyCall for your different projects.
+
+The first step is again to activate the julia environment. Although PyCall is a dependency of SpineInterface, explicitly installing PyCall works better for configuring Pycall. Then we point it to the correct Python environment and build PyCall.
+```bash
+julia -e '
+env_julia = joinpath(@__DIR__,"environments","jenv")
+path_python = joinpath(@__DIR__,"environments","penv","bin","python3")
+import Pkg
+Pkg.activate(env_julia)
+ENV["PYTHON"] = path_python
+Pkg.add("PyCall")
+Pkg.build("PyCall")
+'
+```
+For Windows, you need to replace 'bin' by 'Scripts' and 'python3' by 'python'.
+
+(If you encounter issues with this step, you may want to try again inside of a julia REPL; that typically works better.)
+
+To check whether PyCall uses the correct python executable, you can enter these commands (again activating the environment first).
+```bash
+julia -e '
+env_julia = joinpath(dirname(@__DIR__),"environments","jenv")
+path_spineopt = joinpath(@__DIR__)
+import Pkg
+Pkg.activate(env_julia)
+import PyCall
+println(PyCall.pyprogramname)
+'
+```
+
 ### Install SpineInterface
 
 To install SpineInterface, we need to activate the julia environment, install the dependencies for SpineInterface and add SpineInterface as a development package.
@@ -184,40 +216,6 @@ Pkg.instantiate()
 Pkg.develop(path=path_spineopt)
 '
 cd ..
-```
-
-### Configure PyCall
-
-SpineOpt and SpineInterface are now installed from source. The next step is to ensure that PyCall is configured correctly. You can also use these commands to configure PyCall for your different projects.
-
-The first step is again to activate the julia environment. Although PyCall is a dependency of SpineInterface, explicitly installing PyCall works better for configuring Pycall. Then we import PyCall, point it to the correct Python environment and build PyCall.
-```bash
-julia -e '
-env_julia = joinpath(@__DIR__,"environments","jenv")
-path_python = joinpath(@__DIR__,"environments","penv","bin","python3")
-import Pkg
-Pkg.activate(env_julia)
-Pkg.add("PyCall")
-import PyCall
-ENV["PYTHON"] = path_python
-Pkg.build("PyCall")
-println(PyCall.pyprogramname)
-'
-```
-For Windows, you need to replace 'bin' by 'Scripts' and 'python3' by 'python'.
-
-(If you encounter issues with this step, you may want to try again inside of a julia REPL; that typically works better.)
-
-To check whether PyCall uses the correct python executable, you can enter these commands (again activating the environment first).
-```bash
-julia -e '
-env_julia = joinpath(dirname(@__DIR__),"environments","jenv")
-path_spineopt = joinpath(@__DIR__)
-import Pkg
-Pkg.activate(env_julia)
-import PyCall
-println(PyCall.pyprogramname)
-'
 ```
 
 ### Configure Julia in the Spine Toolbox settings
