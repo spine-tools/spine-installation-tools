@@ -50,8 +50,22 @@ cd ..
 cd Spine-Toolbox
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
+# python -m pip install --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org -r requirements.txt
 #python -m pip install -r dev-requirements.txt
 cd ..
+
+# install and configure PyCall
+julia -e '
+env_julia = joinpath(@__DIR__,"environments","jenv")
+path_python = joinpath(@__DIR__,"environments","penv","Scripts","python")
+import Pkg
+Pkg.activate(env_julia)
+ENV["PYTHON"] = path_python
+Pkg.add("PyCall")
+Pkg.build("PyCall")
+import PyCall
+println(PyCall.pyprogramname)
+'
 
 # install SpineInterface
 cd SpineInterface.jl
@@ -60,8 +74,8 @@ env_julia = joinpath(dirname(@__DIR__),"environments","jenv")
 path_spineinterface = joinpath(@__DIR__)
 import Pkg
 Pkg.activate(env_julia)
-Pkg.instantiate()
 Pkg.develop(path=path_spineinterface)
+Pkg.instantiate()
 '
 cd ..
 
@@ -72,23 +86,10 @@ env_julia = joinpath(dirname(@__DIR__),"environments","jenv")
 path_spineopt = joinpath(@__DIR__)
 import Pkg
 Pkg.activate(env_julia)
-Pkg.instantiate()
 Pkg.develop(path=path_spineopt)
+Pkg.instantiate()
 '
 cd ..
-
-# install and configure PyCall
-julia -e '
-env_julia = joinpath(@__DIR__,"environments","jenv")
-path_python = joinpath(@__DIR__,"environments","penv","Scripts","python")
-import Pkg
-Pkg.activate(env_julia)
-Pkg.add("PyCall")
-import PyCall
-ENV["PYTHON"] = path_python
-Pkg.build("PyCall")
-println(PyCall.pyprogramname)
-'
 
 # manually add julia environment to settings in spine toolbox
 spinetoolbox
