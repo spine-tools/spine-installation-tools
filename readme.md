@@ -13,8 +13,8 @@ In the following we explain how to use the scripts, how to verify your installat
 ## Prerequisites
 In order for the scripts to work, we need 3 prerequisites:
 * Git
-* Python >= 3.10 (check [Spine Toolbox](https://github.com/Spine-tools/Spine-Toolbox) for the supported versions)
-* Julia >= 1.10 (check [SpineOpt](https://github.com/spine-tools/SpineOpt.jl) for the supported versions)
+* Python (check [Spine Toolbox](https://github.com/Spine-tools/Spine-Toolbox) for the supported versions)
+* Julia (check [SpineOpt](https://github.com/spine-tools/SpineOpt.jl) for the supported versions)
 
 You can check whether each of these is installed correctly by opening the terminal (cmd, powershell, Terminal App, etc.) and type:
 ```bash
